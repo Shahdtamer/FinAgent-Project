@@ -20,8 +20,7 @@ llm = ChatGoogleGenerativeAI(
 )
 # Defoine the prompt with system instructions and human input that choose between using memory or tool based on the question
 prompt = ChatPromptTemplate.from_messages([
-    ("system","""You are a helpful financial assistant.
-
+    ("system", """You are a helpful financial assistant.
 You have access to:
 1. Conversation history (memory) to recall previous user inputs.
 2. A financial knowledge tool to retrieve definitions.
@@ -30,8 +29,10 @@ Rules:
 - Use the conversation history to answer questions about previous context.
 - If the question is about financial definitions (e.g., EBITDA), use the tool.
 - If the answer is already in the conversation, do NOT use the tool.
-- do not repeat the answer in the same response
-- If tool is used, return ONLY tool output.
+- CRITICAL: When you use a tool, your ENTIRE response must be EXACTLY the tool output. 
+  Do not add any prefix, suffix, explanation, or restatement. 
+  Do not say 'According to...' or 'Based on the tool...'. 
+  Just output the raw tool result and nothing else.
 - Always provide clear and concise answers."""),
 MessagesPlaceholder(variable_name="chat_history"),
     ("human","{input}") ,

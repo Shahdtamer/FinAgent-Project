@@ -7,7 +7,8 @@ pydantic==2.7.4
 python-dotenv==1.0.1
 faiss-cpu
 sentence-transformers== 5.4.1
-
-
+langchain-chroma== 1.1.0
+langfuse== 4.5.1
+chromadb==1.5.8
 
 
